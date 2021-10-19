@@ -10,6 +10,8 @@ const MovieList = (props) => {
 			{props.movies.map((movie, index) => (
 				<div className='image-container col mb-5' key={index}>
 					<img src={movie.Poster} alt='movie'></img>
+					{/* <h3>{movie.Title}</h3> */}
+					{/* <h6>{movie.Year}</h6> */}
                     <div 
                     className='overlay ml-5'
                     onClick={() => props.handleFavouritesClick(movie)}

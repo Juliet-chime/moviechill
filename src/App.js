@@ -12,9 +12,10 @@ function App() {
   const [favourite, setFavourite] = useState([])
 
   const getMovieRequest = async (searchValue) => {
-		const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=263d22d8`;
+		const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=ab553d1d`;
     const response = await fetch(url)
     const responseJson = await response.json()
+    console.log(responseJson + "aaaaaaaa")
 
     if(responseJson.Search){
       setMovies(responseJson.Search)
@@ -51,6 +52,7 @@ function App() {
 		const newFavouriteList = favourite.filter(
 			(favourites) => favourites.imdbID !== movie.imdbID
 		);
+    console.log(newFavouriteList + "moviepop")
 
 		setFavourite(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
@@ -61,18 +63,18 @@ function App() {
   return (
     <div className="App container-fluid movie-app">
 
-       <div className="row p-5 offset-md-1">
+       <div className="header">
          <Movieheading heading="ChillZone"/>
          <Searchinput searchValue={searchValue} setSearchValue={setSearchValue}/>
        </div>
-     
+     <div className="movie-holder">
      <div className="p-md-5">
      <div className="row offset-md-1">
      <MovieList movies={movies} favouriteMovie={AddToFavorite} handleFavouritesClick={addFavouriteMovie}/>
       </div>
      </div>
 
-     <div className="row p-5 offset-md-1">
+     <div className="row p-5 offset-md-2">
          <Movieheading heading="Favourite"/>
        </div>
 
@@ -80,6 +82,7 @@ function App() {
      <div className="row offset-md-1">
      <MovieList movies={favourite} favouriteMovie={RemoveFavourites} handleFavouritesClick={removeFavouriteMovie}/>
       </div>
+     </div>
      </div>
     </div>
   );
